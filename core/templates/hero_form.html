@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}{{ block.super }}: register{% endblock title %}
+
+{% block page_title %}Register{% endblock page_title %}
+
+{% block content %}
+{% if next %}
+<form action=".?next={{ next }}" method="POST" enctype="multipart/form-data">
+{% else %}
+<form action="." method="POST" enctype="multipart/form-data">
+{% endif %}
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	{% buttons %}
+			<button type="submit" class="btn btn-primary">
+					{% bootstrap_icon "star" %} Go!
+			</button>
+	{% endbuttons %}
+</form>
+{% endblock content %}

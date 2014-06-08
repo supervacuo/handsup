@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block page_title %}Add campaign{% endblock page_title %}
+
+{% block extra_js %}
+	<script src="{{ STATIC_URL }}js/jquery.slugify.js"></script>
+	<script type="text/javascript">
+		{# FIXME move to "form.js" or a generic form template #}
+		$(document).ready(function() {
+				createSlugs();
+		});
+	</script>
+{% endblock extra_js %}
+
+{% block content %}
+<form action="." method="POST">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	{% buttons %}
+			<button type="submit" class="btn btn-primary">
+					{% bootstrap_icon "star" %} Go!
+			</button>
+	{% endbuttons %}
+</form>
+{% endblock content %}

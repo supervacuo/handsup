@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}: {{ campaign.name }}{% endblock title %}
+
+{% block page_title %}Hero: {{ campaign.name }}{% endblock page_title %}
+
+{% block content %}
+{{ hero.name }}
+
+{% endblock content %}

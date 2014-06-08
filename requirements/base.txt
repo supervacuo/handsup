@@ -1,0 +1,9 @@
+#Django==1.6.2
+bpython==0.12
+django-braces==1.2.2
+django-model-utils==1.5.0
+django-bootstrap3==4.7.0
+geopy==0.99
+Pillow==2.4.0
+logutils==0.3.3
+South==0.8.2

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load core %}
+
+{% block title %}{{ block.super }}: {{ campaign.name }}{% endblock title %}
+
+{% block page_title %}Campaign: {{ campaign.name }}{% endblock page_title %}
+
+{% block content %}
+<div class="well">
+{% if user in campaign.heroes.all %}
+	{# User already part of this campaign #}
+	{% if not campaign.owner %}
+	<p>
+		This campaign doesn't have an owner yet. 
+		<a href="{% url "campaign_own" slug=campaign.slug %}">Step up</a>
+	</p>
+	{% else %}
+		{% if request.user == campaign.owner %}
+			<p>
+				<em>(You own this campaign)</em>
+			</p>
+		{% else %}
+			<p>
+				<em>(Owned by "{{ campaign.owner.username }}")</em>
+			</p>
+		{% endif %}
+	{% endif %}
+{% else %}
+	<a class="btn btn-info btn-lg" href="{% url "campaign_join" slug=campaign.slug %}">Join campaign</a>
+{% endif %}
+</div>
+<h2>
+	Supporters
+	<span class="badge">
+		{{ campaign.heroes.count }} / {{ campaign.threshold }}
+	</span>
+</h2>
+<h1 style="clear:both" ></h1>
+<ul id="members">
+	{% for hero in campaign.heroes.all %}
+	<li {% if hero.photo %}
+		style="background-image: url({{ hero.photo.url }})"
+		{% endif %}
+		{% if user == hero %}class="me"{% endif %}
+		><span>{{ hero.username }}</span></li>
+	{% endfor %}
+	{% for vacancy in vacancies|get_range %}
+	<li class="vacant"></li>
+	{% endfor %}
+</ul>
+<span class="clearfix"></span>
+{% endblock content %}

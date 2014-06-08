@@ -1,5 +1,5 @@
 """
-WSGI config for calltoaction project.
+WSGI config for handsup project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -16,6 +16,21 @@ framework.
 import os
 from os.path import abspath, dirname
 from sys import path
+import site
+
+# remember original sys.path.
+prev_sys_path = list(path)
+
+site.addsitedir('/usr/local/virtualenvs/handsup/lib/python2.6/site-packages/')
+
+# reorder sys.path so new directories at the front.
+new_sys_path = []
+for item in list(path):
+	if item not in prev_sys_path:
+		new_sys_path.append(item)
+		path.remove(item)
+
+path[:0] = new_sys_path
 
 SITE_ROOT = dirname(dirname(abspath(__file__)))
 path.append(SITE_ROOT)
@@ -24,7 +39,8 @@ path.append(SITE_ROOT)
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "jajaja.settings"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "calltoaction.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "handsup.settings.hippolito")
+os.environ.setdefault("SECRET_KEY", "not very secret at all..")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

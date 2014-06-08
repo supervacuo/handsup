@@ -1,0 +1,23 @@
+[
+{
+    "pk": 1, 
+    "model": "core.superpower", 
+    "fields": {
+        "name": "Writing"
+    }
+},
+{
+    "pk": 2, 
+    "model": "core.superpower", 
+    "fields": {
+        "name": "Fundraising"
+    }
+},
+{
+    "pk": 3, 
+    "model": "core.superpower", 
+    "fields": {
+        "name": "Promotion"
+    }
+}
+]

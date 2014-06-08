@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}: join {{ campaign.name }}{% endblock title %}
+
+{% block page_title %}Take ownership of "{{ campaign.name }}"{% endblock page_title %}
+
+{% block content %}
+<h2>Thank you</h2>
+<p>
+	By volunteering to organise the first meeting of this campaign, ut egestas
+	libero. Phasellus scelerisque odio in sapien ullamcorper, eget gravida leo
+	ultricies.
+</p>
+<form action="." method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button class="btn btn-primary" action="submit">Go!</button>
+</form>
+{% endblock content %}
