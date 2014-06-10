@@ -29,7 +29,9 @@
 	<a class="btn btn-info btn-lg" href="{% url "campaign_join" slug=campaign.slug %}">Join campaign</a>
 {% endif %}
 </div>
-<section
+<p>
+	{{ campaign.description }}
+</p>
 <h2>
 	Supporters
 	<span class="badge">
