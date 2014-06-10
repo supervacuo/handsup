@@ -76,7 +76,10 @@ class CampaignHero(models.Model):
     date_created = models.DateTimeField(default=datetime.now, editable=False)
 
     def __unicode__(self, *args, **kwargs):
-        return u"%s in %s" % (self.campaign.name, self.hero.username)
+        return u"%s in %s" % (
+            self.hero.username,
+            self.campaign.name
+        )
 
 
 class Campaign(models.Model):
@@ -92,7 +95,7 @@ class Campaign(models.Model):
     
     date_created = models.DateTimeField(default=datetime.now, editable=False)
 
-    owner = models.ForeignKey(Hero, blank=True, null=True)
+    owner = models.ForeignKey(Hero, blank=True, null=True, related_name='owned_campaigns')
 
     location_lat = DefaultDecimalField(editable=False, blank=True, null=True)
     location_lon = DefaultDecimalField(editable=False, blank=True, null=True)

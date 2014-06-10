@@ -2,6 +2,7 @@
 from django.contrib.auth import login
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
+from django.db.models import Count
 from django.http import HttpResponseRedirect, Http404
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView
@@ -11,7 +12,7 @@ from braces.views import LoginRequiredMixin as BLoginRequiredMixin
 
 from .forms import (RegistrationForm, CampaignForm, CampaignJoinForm,
                     CampaignOwnForm)
-from .models import Hero, Campaign
+from .models import Hero, Campaign, Superpower
 
 
 class LoginRequiredMixin(BLoginRequiredMixin):
@@ -97,6 +98,11 @@ class CampaignDetailView(DetailView):
         context = super(CampaignDetailView, self).get_context_data(**kwargs)
 
         context['vacancies'] = self.object.threshold - self.object.heroes.count()
+        context['superpowers'] = Superpower.objects.filter(
+            heroes__hero_campaigns__campaign=self.object
+        ).annotate(
+            count=Count('heroes')
+        )
 
         return context
 

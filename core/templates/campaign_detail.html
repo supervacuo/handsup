@@ -29,6 +29,7 @@
 	<a class="btn btn-info btn-lg" href="{% url "campaign_join" slug=campaign.slug %}">Join campaign</a>
 {% endif %}
 </div>
+<section
 <h2>
 	Supporters
 	<span class="badge">
@@ -37,16 +38,25 @@
 </h2>
 <h1 style="clear:both" ></h1>
 <ul id="members">
-	{% for hero in campaign.heroes.all %}
-	<li {% if hero.photo %}
-		style="background-image: url({{ hero.photo.url }})"
+	{% for c_hero in campaign.campaign_heroes.all %}
+		{% if c_hero.public %}
+		<li {% if c_hero.hero.photo %}
+			style="background-image: url({{ c_hero.hero.photo.url }})"
+			{% endif %}
+			{% if user == c_hero.hero %}class="me"{% endif %}
+			><span>{{ c_hero.hero.username }}</span></li>
+		{% else %}
+			<li class="anonymous"><span>????</span></li>
 		{% endif %}
-		{% if user == hero %}class="me"{% endif %}
-		><span>{{ hero.username }}</span></li>
 	{% endfor %}
 	{% for vacancy in vacancies|get_range %}
 	<li class="vacant"></li>
 	{% endfor %}
 </ul>
 <span class="clearfix"></span>
+<ul id="skills">
+	{% for superpower in superpowers %}
+	<li style="font-size: {% widthratio superpower.count campaign.heroes.count 300 %}%">{{ superpower.name }}</li>
+	{% endfor %}
+</ul>
 {% endblock content %}

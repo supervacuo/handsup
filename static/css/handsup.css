@@ -29,3 +29,14 @@
 	position: absolute;
 	bottom: -2em;
 }
+
+#skills {
+	margin: 3em auto 1em auto;
+	list-style-type: none;
+	width: 20%;
+}
+
+#skills li {
+	display: inline-block;
+	width: auto;
+}
