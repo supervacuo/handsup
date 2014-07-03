@@ -23,3 +23,17 @@ Open an [issue][2] or [pull request][3] on GitHub, or e-mail info@hands-up.org.u
 [1]: http://beta.hands-up.org.uk
 [2]: https://github.com/supervacuo/handsup/issues/new
 [3]: https://github.com/supervacuo/handsup/compare/
+
+## set-up
+
+Install dependencies:
+
+* Python 2.7+
+* pip
+* bower
+
+Then install Python packages, set up the DB, and run!
+
+    $ pip install -r requirements/local.txt
+    $ python manage.py syncdb --migrate
+    $ python manage.py runserver
