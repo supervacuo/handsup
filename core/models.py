@@ -70,8 +70,8 @@ class CampaignHero(models.Model):
     hero = models.ForeignKey(Hero, related_name="hero_campaigns")
 
     public = models.BooleanField(
+        verbose_name="Public?", default=True,
         help_text=u"Show your username and profile picture on this campaign's page?",
-        default=True
     )
     date_created = models.DateTimeField(default=datetime.now, editable=False)
 

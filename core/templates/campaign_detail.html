@@ -3,62 +3,68 @@
 
 {% block title %}{{ block.super }}: {{ campaign.name }}{% endblock title %}
 
-{% block page_title %}Campaign: {{ campaign.name }}{% endblock page_title %}
+{% block page_title %}{{ campaign.name }}{% endblock page_title %}
 
 {% block content %}
-<div class="well">
-{% if user in campaign.heroes.all %}
-	{# User already part of this campaign #}
-	{% if not campaign.owner %}
-	<p>
-		This campaign doesn't have an owner yet. 
-		<a href="{% url "campaign_own" slug=campaign.slug %}">Step up</a>
-	</p>
-	{% else %}
-		{% if request.user == campaign.owner %}
+<section id="details">
+	<div>
+		<p>
+			{{ campaign.description }}
+		</p>
+	</div>
+	<div>
+		{% if user in campaign.heroes.all %}
 			<p>
-				<em>(You own this campaign)</em>
+				You're participating in this campaign. Nice one!
+			</p>
+			<p>
+				{% if not campaign.owner %}
+					This campaign doesn't have an owner yet. 
+					<a href="{% url "campaign_own" slug=campaign.slug %}">Step up</a>
+				{% else %}
+					{% if request.user == campaign.owner %}
+						<em>(You own this campaign)</em>
+					{% else %}
+						<em>(Owned by "{{ campaign.owner.username }}")</em>
+					{% endif %}
+				{% endif %}
 			</p>
 		{% else %}
 			<p>
-				<em>(Owned by "{{ campaign.owner.username }}")</em>
+				<a class="button" href="{% url "campaign_join" slug=campaign.slug %}">Join campaign</a>
 			</p>
 		{% endif %}
-	{% endif %}
-{% else %}
-	<a class="btn btn-info btn-lg" href="{% url "campaign_join" slug=campaign.slug %}">Join campaign</a>
-{% endif %}
-</div>
-<p>
-	{{ campaign.description }}
-</p>
-<h2>
-	Supporters
-	<span class="badge">
-		{{ campaign.heroes.count }} / {{ campaign.threshold }}
-	</span>
-</h2>
-<h1 style="clear:both" ></h1>
-<ul id="members">
-	{% for c_hero in campaign.campaign_heroes.all %}
-		{% if c_hero.public %}
-		<li {% if c_hero.hero.photo %}
-			style="background-image: url({{ c_hero.hero.photo.url }})"
+	</div>
+	<section id="skills">
+		<h2>Skills</h2>
+		<ul>
+			{% for superpower in superpowers %}
+			<li style="font-size: {% widthratio superpower.count campaign.heroes.count 300 %}%">{{ superpower.name }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+<section id="heroes">
+	<ul>
+		{% for c_hero in campaign.campaign_heroes.all %}
+			{% if c_hero.public %}
+			<li {% if c_hero.hero.photo %}
+				style="background-image: url({{ c_hero.hero.photo.url }})"
+				{% endif %}
+				{% if user == c_hero.hero %}class="me"{% endif %}
+				><span>{{ c_hero.hero.username|truncatechars:7 }}</span></li>
+			{% else %}
+				<li class="anonymous"><span>????</span></li>
 			{% endif %}
-			{% if user == c_hero.hero %}class="me"{% endif %}
-			><span>{{ c_hero.hero.username }}</span></li>
-		{% else %}
-			<li class="anonymous"><span>????</span></li>
-		{% endif %}
-	{% endfor %}
-	{% for vacancy in vacancies|get_range %}
-	<li class="vacant"></li>
-	{% endfor %}
-</ul>
-<span class="clearfix"></span>
-<ul id="skills">
-	{% for superpower in superpowers %}
-	<li style="font-size: {% widthratio superpower.count campaign.heroes.count 300 %}%">{{ superpower.name }}</li>
-	{% endfor %}
-</ul>
+		{% endfor %}
+		{% for vacancy in vacancies|get_range %}
+		<li class="vacant"></li>
+		{% endfor %}
+	</ul>
+	<h2>
+		<span>{{ campaign.heroes.count }}</span>
+		supporter{{ campaign.heroes.count|pluralize }}, 
+		<span>{{ vacancies }}</span> more needed
+	</h2>
+</section>
 {% endblock content %}

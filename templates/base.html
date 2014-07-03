@@ -45,6 +45,7 @@
         </h2>
       </header>
 
+      {% if messages %}
       <ul class="messages">
           {% for message in messages %}
           <li class="alert alert-{% if message.tags %}{{ message.tags }}"{% endif %}>
@@ -53,6 +54,7 @@
           {% endfor %}
           {% block messages %}{% endblock messages %}
       </ul>
+      {% endif %}
 
       {% block content %}
       {% endblock content %}
@@ -61,13 +63,19 @@
 
     <footer id="page_footer">
       <ul class="nav">
-        <li><a class="navbar-brand" href="{% url "home" %}">Hands Up!</a></li>
+        <li><a href="{% url "home" %}">Hands Up!</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#legal">Legal</a></li>
         <li><a href="#safer_spaces">Safer Spaces</a></li>
         {% if request.user.is_authenticated %}
         <li><a href="{% url "user_logout" %}">Logout</a></li>
         {% endif  %}
+        <li> 
+          &copy; 2014, some rights reserved under 
+          <a href="http://creativecommons.org/licenses/by/4.0/">
+            Creative Commons CC-BY 4.0
+          </a>
+        </li>
       </ul>
     </footer>
   </body>

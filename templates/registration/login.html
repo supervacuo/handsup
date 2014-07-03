@@ -8,6 +8,13 @@
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
   {% csrf_token %}
+  {% if next %}
+  <div class="info error">
+    <p>
+      You need to log in first!
+    </p>
+  </div>
+  {% endif %}
   <div>
     No account yet? 
     <a class="button" href="{% url "user_register" %}?next={{ next }}">Register</a>

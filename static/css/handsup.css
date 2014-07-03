@@ -119,8 +119,9 @@ h1 {
 }
 h2 {
   font-size: 1.95em;
-  line-height: 2.173913043478261;
-  margin: 1.086956521739131em 0;
+  line-height: 1.282051282051282;
+  margin: 0.641025641025641em 0;
+  font-family: 'Patrick Hand', cursive;
 }
 h3 {
   font-size: 1.15em;
@@ -136,6 +137,10 @@ li {
 }
 a {
   text-decoration: none;
+  color: #2f7c0b;
+}
+a:visited {
+  color: #2f7c0b;
 }
 strong {
   font-weight: bold;
@@ -153,9 +158,9 @@ form {
   position: relative;
 }
 form > div {
+  width: 80%;
   border: 1px solid #000;
   text-align: center;
-  width: 80%;
   transform-origin: left center;
   padding: 1.923076923076923em;
   margin: 3.846153846153846em auto;
@@ -166,6 +171,15 @@ form > div:nth-child(odd) {
 }
 form > div:nth-child(even) {
   transform: rotate(-2deg);
+}
+form > div.info {
+  transform: none;
+}
+form > div.error,
+form > div.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
 }
 form ul.errorlist {
   position: absolute;
@@ -229,6 +243,30 @@ button,
   font-size: 1.95rem;
   vertical-align: middle;
 }
+input[type=checkbox] {
+  display: none;
+}
+input[type=checkbox] + label {
+  padding-left: 40px;
+  display: inline-block;
+  line-height: 30px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: url("/static/img/checkbox.png");
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0.543478260869566em 0;
+  transition: background-position 0.2s ease;
+}
+input[type=checkbox]:checked + label {
+  background-position: 0 -30px;
+}
 body {
   position: relative;
   padding-bottom: 60px;
@@ -246,9 +284,57 @@ body {
 #page_header h2 {
   margin: 0;
   text-align: center;
+  background: #000;
+  color: #fff;
+  font-size: 3.75em;
+  line-height: 1.666666666666665;
+}
+.messages {
+  border: 1px solid #000;
+  text-align: center;
+  transform-origin: left center;
+  padding: 1.923076923076923em;
+  margin: 3.846153846153846em auto;
+  width: 60%;
+  padding: 0;
+  background-color: #edd62b;
+  margin-bottom: 1.25em;
+}
+.messages:nth-child(odd) {
+  transform: rotate(2deg);
+  margin-top: -32px;
+}
+.messages:nth-child(even) {
+  transform: rotate(-2deg);
+}
+.messages.info {
+  transform: none;
+}
+.messages.error,
+.messages.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
 }
 .messages li {
   list-style-type: none;
+}
+#page_footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: right;
+  border-top: 2px dotted #222;
+}
+#page_footer ul li {
+  display: inline-block;
+  margin: 0 1em;
+  line-height: 2.5em;
+}
+#page_footer ul li a {
+  color: #222;
+  font-weight: bold;
 }
 #cause_community {
   background: transparent url("/static/img/levy_baths.jpg") no-repeat;
@@ -278,10 +364,50 @@ body {
   font-size: 1.95rem;
   vertical-align: middle;
 }
-#members {
-  margin: 1em;
+section#details {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 495.00000000000017px;
+  margin: 0 7.50000000000042px;
+  *width: 495.00000000000017px -correction;
+  *margin: 0 7.50000000000042px -correction;
+  padding-top: 4em;
 }
-#members li {
+section#details div {
+  width: 80%;
+  border: 1px solid #000;
+  text-align: center;
+  transform-origin: left center;
+  padding: 1.923076923076923em;
+  margin: 3.846153846153846em auto;
+}
+section#details div:nth-child(odd) {
+  transform: rotate(2deg);
+  margin-top: -32px;
+}
+section#details div:nth-child(even) {
+  transform: rotate(-2deg);
+}
+section#details div.info {
+  transform: none;
+}
+section#details div.error,
+section#details div.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
+}
+section#heroes {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 495.00000000000017px;
+  margin: 0 7.50000000000042px;
+  *width: 495.00000000000017px -correction;
+  *margin: 0 7.50000000000042px -correction;
+}
+section#heroes li {
   width: 5em;
   height: 5em;
   border-radius: 2.5em;
@@ -292,39 +418,70 @@ body {
   float: left;
   margin-right: 1em;
 }
-#members li.vacant {
+section#heroes li.vacant {
   background-color: #808080;
 }
-#members li.me {
+section#heroes li.me {
   border: 4px solid #000;
+  box-sizing: border-box;
 }
-#members li span {
+section#heroes li span {
   position: absolute;
   bottom: -2em;
 }
-#skills {
-  margin: 3em auto 1em auto;
-  list-style-type: none;
-  width: 20%;
+section#heroes h2 {
+  text-align: center;
+  clear: both;
 }
-#skills li {
+section#heroes h2 span {
+  font-size: 1.95em;
+  vertical-align: baseline;
+  text-decoration: underline;
+}
+#skills {
+  border: 1px solid #000;
+  text-align: center;
+  transform-origin: left center;
+  padding: 1.923076923076923em;
+  margin: 3.846153846153846em auto;
+  width: 80%;
+}
+#skills:nth-child(odd) {
+  transform: rotate(2deg);
+  margin-top: -32px;
+}
+#skills:nth-child(even) {
+  transform: rotate(-2deg);
+}
+#skills.info {
+  transform: none;
+}
+#skills.error,
+#skills.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
+}
+#skills ul {
+  list-style-type: none;
+}
+#skills ul li {
   display: inline-block;
   width: auto;
+  line-height: 40px;
+  margin: 20px;
 }
-#page_footer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+#skills ul li:nth-child(n) {
+  color: #2f7c0b;
+}
+#skills ul li:nth-child(2n) {
+  color: #ed1b24;
+}
+#skills ul li:nth-child(3n) {
+  color: #edd62b;
+}
+#skills h2 {
+  margin: 0;
   width: 100%;
-  text-align: center;
-  border-top: 2px dotted #222;
-}
-#page_footer ul li {
-  display: inline-block;
-  margin: 0 1em;
-  line-height: 2.5em;
-}
-#page_footer ul li a {
-  color: #222;
-  font-weight: bold;
+  text-align: left;
 }

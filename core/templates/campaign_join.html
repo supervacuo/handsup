@@ -2,19 +2,29 @@
 
 {% block title %}{{ block.super }}: join {{ campaign.name }}{% endblock title %}
 
+{% block page_title %}Join &ldquo;{{ campaign.name }}&rdquo;{% endblock page_title %}
+
 {% block content %}
 <form action="." method="POST">
 	{% csrf_token %}
-	<p>
-		This service is all about getting people to meet in real life!
-	</p>
-	<p>
-		This campaign has been started by people in 
-		<strong>{{ campaign.location_address }}</strong> &ndash; if you might have trouble
-		making it to a meeting there, why not <a href="{% url "campaign_add" %}"
-		>start your own campaign</a> for your local area?
-	</p>
-	{% form form using "floppyforms/layouts/p.html" %}
-	<button type="submit">Join!</button>
+	<div class="info important">
+		<p>
+			Hands Up! is about meeting in real life
+		</p>
+	</div>
+	<div class="info">
+		<p>
+			This campaign has been started by people in 
+			<strong>{{ campaign.location_address }}</strong> &ndash; if you might have trouble
+			making it to a meeting there, why not <a href="{% url "campaign_add" %}"
+			>start your own campaign</a> for your local area?
+		</p>
+	</div>
+	{% form form using %}
+	{% formrow form.public with label_after=1 %}
+	{% endform %}
+	<div>
+		<button type="submit">Join!</button>
+	</div>
 </form>
 {% endblock content %}
