@@ -136,6 +136,7 @@ li {
 }
 a {
   text-decoration: none;
+  font-weight: bold;
   color: #2f7c0b;
 }
 a:visited {
@@ -170,6 +171,9 @@ form > div:nth-child(odd) {
 }
 form > div:nth-child(even) {
   transform: rotate(-2deg);
+}
+form > div.r {
+  transform: rotate(2deg);
 }
 form > div.info {
   transform: none;
@@ -246,6 +250,10 @@ button,
   font-size: 1.95rem;
   vertical-align: middle;
 }
+button:visited,
+.button:visited {
+  color: #fff;
+}
 input[type=checkbox] {
   display: none;
 }
@@ -310,6 +318,9 @@ body {
 .messages:nth-child(even) {
   transform: rotate(-2deg);
 }
+.messages.r {
+  transform: rotate(2deg);
+}
 .messages.info {
   transform: none;
 }
@@ -327,7 +338,8 @@ body {
   list-style-type: none;
 }
 #page_footer {
-  position: absolute;
+  position: fixed;
+  background-color: #fff;
   bottom: 0;
   right: 0;
   width: 100%;
@@ -371,6 +383,9 @@ body {
   font-size: 1.95rem;
   vertical-align: middle;
 }
+#cause_community span .btn:visited {
+  color: #fff;
+}
 section#details {
   display: inline;
   float: left;
@@ -395,6 +410,9 @@ section#details div:nth-child(odd) {
 }
 section#details div:nth-child(even) {
   transform: rotate(-2deg);
+}
+section#details div.r {
+  transform: rotate(2deg);
 }
 section#details div.info {
   transform: none;
@@ -424,6 +442,9 @@ section#details div.important {
 #skills:nth-child(even) {
   transform: rotate(-2deg);
 }
+#skills.r {
+  transform: rotate(2deg);
+}
 #skills.info {
   transform: none;
 }
@@ -446,14 +467,21 @@ section#details div.important {
   line-height: 40px;
   margin: 20px;
 }
-#skills ul li:nth-child(n) {
+#skills ul li:nth-child(3n) {
   color: #2f7c0b;
 }
-#skills ul li:nth-child(2n) {
+#skills ul li:nth-child(3n+1) {
   color: #ed1b24;
 }
-#skills ul li:nth-child(3n) {
+#skills ul li:nth-child(3n+2) {
   color: #edd62b;
+}
+#skills ul li.none {
+  color: #000;
+  line-height: 1.25;
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
 }
 #skills h2 {
   margin: 0;
@@ -491,6 +519,19 @@ section#heroes li span {
   position: absolute;
   bottom: -2em;
 }
+section#heroes li:nth-child(3n+1) {
+  margin-left: -1px;
+}
+section#heroes li:nth-child(3n+2) {
+  margin-left: 5px;
+  position: relative;
+  top: -5px;
+}
+section#heroes li:nth-child(3n) {
+  margin-left: 3px;
+  position: relative;
+  top: 2px;
+}
 section#heroes h2 {
   text-align: center;
   clear: both;
@@ -515,6 +556,9 @@ section#heroes > div:nth-child(odd) {
 }
 section#heroes > div:nth-child(even) {
   transform: rotate(-2deg);
+}
+section#heroes > div.r {
+  transform: rotate(2deg);
 }
 section#heroes > div.info {
   transform: none;
@@ -559,6 +603,9 @@ section#promote > div:nth-child(odd) {
 }
 section#promote > div:nth-child(even) {
   transform: rotate(-2deg);
+}
+section#promote > div.r {
+  transform: rotate(2deg);
 }
 section#promote > div.info {
   transform: none;

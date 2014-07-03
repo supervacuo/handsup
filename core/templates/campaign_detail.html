@@ -40,6 +40,13 @@
 		<ul>
 			{% for superpower in superpowers %}
 			<li style="font-size: {% widthratio superpower.count campaign.heroes.count 300 %}%">{{ superpower.name }}</li>
+			{% empty %}
+			<li class="none">None yet&hellip; why not 
+				<a href="{% url 'campaign_promote' slug=campaign.slug %}">
+					suggest it to someone who could help</a>, or
+				<a href="{% url 'campaign_join' slug=campaign.slug %}">
+					get involved yourself</a>?
+				</li>
 			{% endfor %}
 		</ul>
 	</div>

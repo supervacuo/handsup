@@ -13,8 +13,9 @@
 	</div>
 	<div>
 		<p>
-			Promote &ldquo;{{ campaign.name }}&rdquo; to people you know and help
-			reach the goal of <strong>{{ campaign.threshold }}</strong> members.
+			Promote &ldquo;<strong>{{ campaign.name }}</strong>&rdquo; to people you
+			know and help reach the goal of 
+			<strong>{{ campaign.threshold }}</strong> members.
 		</p>
 	</div>
 	<div class="info">
@@ -24,10 +25,23 @@
 				http://{{ site.domain }}{% url 'campaign_detail' slug=campaign.slug %}
 			</code>
 		</p>
+	</div>
+	{% if campaign.campaign_heroes.count == 0 %}
+	<div class="r">
+		<h3>Now you'd better join it yourself!</h3>
 		<p>
-			(which goes to the <a href="{% url 'campaign_detail' slug=campaign.slug %}">
-				campaign details</a> page&hellip;)
+			<a class="button" href="{% url 'campaign_join' slug=campaign.slug %}">
+				Join campaign
+			</a>
 		</p>
 	</div>
+	{% else %}
+	<div class="r">
+		<p>
+			You can also check out the <a href="{% url 'campaign_detail' slug=campaign.slug %}">
+				campaign details</a> page yourself to see how it's getting on &hellip;
+		</p>
+	</div>
+	{% endif %}
 </section>
 {% endblock content %}
