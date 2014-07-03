@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,8 +8,8 @@ admin.autodiscover()
 
 
 from core.views import (HomeView, CampaignAddView, CampaignDetailView,
-                        HeroRegisterView, HeroDetailView, CampaignJoinView,
-                        CampaignOwnView)
+                        CampaignJoinView, CampaignOwnView, CampaignPromoteView,
+                        HeroRegisterView, HeroDetailView)
 
 
 urlpatterns = patterns('',
@@ -21,6 +20,7 @@ urlpatterns = patterns('',
 
     url(r'^campaign/(?P<slug>[-_\w]+)/join/$', CampaignJoinView.as_view(), name='campaign_join'),
     url(r'^campaign/(?P<slug>[-_\w]+)/own/$', CampaignOwnView.as_view(), name='campaign_own'),
+    url(r'^campaign/(?P<slug>[-_\w]+)/promote/$', CampaignPromoteView.as_view(), name='campaign_promote'),
     url(r'^campaign/(?P<slug>[-_\w]+)/$', CampaignDetailView.as_view(), name='campaign_detail'),
 
     url(r'^user/(?P<pk>\d+)/$', HeroDetailView.as_view(), name='hero_detail'),

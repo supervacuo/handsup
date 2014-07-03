@@ -127,7 +127,6 @@ h3 {
   font-size: 1.15em;
   line-height: 1.086956521739131;
   margin: 0.641025641025641em 0;
-  text-transform: lowercase;
 }
 p,
 li {
@@ -174,6 +173,10 @@ form > div:nth-child(even) {
 }
 form > div.info {
   transform: none;
+}
+form > div.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
 }
 form > div.error,
 form > div.important {
@@ -310,6 +313,10 @@ body {
 .messages.info {
   transform: none;
 }
+.messages.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
+}
 .messages.error,
 .messages.important {
   border: 2px solid #ff5c5c;
@@ -392,11 +399,66 @@ section#details div:nth-child(even) {
 section#details div.info {
   transform: none;
 }
+section#details div.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
+}
 section#details div.error,
 section#details div.important {
   border: 2px solid #ff5c5c;
   padding: 0 1em;
   font-weight: bold;
+}
+#skills {
+  border: 1px solid #000;
+  text-align: center;
+  transform-origin: left center;
+  padding: 1.923076923076923em;
+  margin: 3.846153846153846em auto;
+  width: 80%;
+}
+#skills:nth-child(odd) {
+  transform: rotate(2deg);
+  margin-top: -32px;
+}
+#skills:nth-child(even) {
+  transform: rotate(-2deg);
+}
+#skills.info {
+  transform: none;
+}
+#skills.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
+}
+#skills.error,
+#skills.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
+}
+#skills ul {
+  list-style-type: none;
+}
+#skills ul li {
+  display: inline-block;
+  width: auto;
+  line-height: 40px;
+  margin: 20px;
+}
+#skills ul li:nth-child(n) {
+  color: #2f7c0b;
+}
+#skills ul li:nth-child(2n) {
+  color: #ed1b24;
+}
+#skills ul li:nth-child(3n) {
+  color: #edd62b;
+}
+#skills h2 {
+  margin: 0;
+  width: 100%;
+  text-align: left;
 }
 section#heroes {
   display: inline;
@@ -432,13 +494,14 @@ section#heroes li span {
 section#heroes h2 {
   text-align: center;
   clear: both;
+  margin-bottom: 1.923076923076923em;
 }
 section#heroes h2 span {
   font-size: 1.95em;
   vertical-align: baseline;
   text-decoration: underline;
 }
-#skills {
+section#heroes > div {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
@@ -446,42 +509,83 @@ section#heroes h2 span {
   margin: 3.846153846153846em auto;
   width: 80%;
 }
-#skills:nth-child(odd) {
+section#heroes > div:nth-child(odd) {
   transform: rotate(2deg);
   margin-top: -32px;
 }
-#skills:nth-child(even) {
+section#heroes > div:nth-child(even) {
   transform: rotate(-2deg);
 }
-#skills.info {
+section#heroes > div.info {
   transform: none;
 }
-#skills.error,
-#skills.important {
+section#heroes > div.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
+}
+section#heroes > div.error,
+section#heroes > div.important {
   border: 2px solid #ff5c5c;
   padding: 0 1em;
   font-weight: bold;
 }
-#skills ul {
-  list-style-type: none;
+section#heroes > div a.button {
+  background-color: #2f7c0b;
+  border-color: #61a52b;
+  color: #fff;
 }
-#skills ul li {
-  display: inline-block;
-  width: auto;
-  line-height: 40px;
-  margin: 20px;
+section#promote {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 495.00000000000017px;
+  margin: 0 7.50000000000042px;
+  *width: 495.00000000000017px -correction;
+  *margin: 0 7.50000000000042px -correction;
+  margin-left: 262.50000000000045px;
+  overflow: visible;
 }
-#skills ul li:nth-child(n) {
-  color: #2f7c0b;
+section#promote > div {
+  border: 1px solid #000;
+  text-align: center;
+  transform-origin: left center;
+  padding: 1.923076923076923em;
+  margin: 3.846153846153846em auto;
+  width: 80%;
 }
-#skills ul li:nth-child(2n) {
-  color: #ed1b24;
+section#promote > div:nth-child(odd) {
+  transform: rotate(2deg);
+  margin-top: -32px;
 }
-#skills ul li:nth-child(3n) {
-  color: #edd62b;
+section#promote > div:nth-child(even) {
+  transform: rotate(-2deg);
 }
-#skills h2 {
-  margin: 0;
+section#promote > div.info {
+  transform: none;
+}
+section#promote > div.heading {
+  padding: 0;
+  margin-top: 1.923076923076923em;
+}
+section#promote > div.error,
+section#promote > div.important {
+  border: 2px solid #ff5c5c;
+  padding: 0 1em;
+  font-weight: bold;
+}
+section#promote > div.info {
+  padding: 0;
+  width: 140%;
+  margin-left: -20%;
+}
+section#promote > div.info h3 {
+  font-family: 'Patrick Hand', cursive;
   width: 100%;
   text-align: left;
+  text-indent: 2em;
+  margin: 1.086956521739131em 0 0 0;
+}
+section#promote > div.info code {
+  font-size: 1.15em;
+  font-family: 'Consolas';
 }

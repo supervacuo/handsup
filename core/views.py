@@ -1,7 +1,9 @@
 # vim: ts=4 sw=4 et fdm=indent
 from django.contrib.auth import login
 from django.contrib import messages
+from django.contrib.sites.models import get_current_site
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.db.models import Count
 from django.http import HttpResponseRedirect, Http404
 from django.views.generic.base import TemplateView
@@ -89,6 +91,10 @@ class CampaignAddView(CreateView):
         
         return HttpResponseRedirect(self.get_success_url())
 
+    def get_success_url(self):
+        return reverse('campaign_promote', kwargs={
+            'slug': self.object.slug
+        })
 
 class CampaignDetailView(DetailView):
     model = Campaign
@@ -155,3 +161,16 @@ class CampaignOwnView(LoginRequiredMixin, SingleObjectMixin, FormView):
         messages.info(self.request, 'You\'re now the owner of this campaign!')
 
         return HttpResponseRedirect(campaign.get_absolute_url())
+
+
+class CampaignPromoteView(DetailView):
+    model = Campaign
+    template_name = 'campaign_promote.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CampaignPromoteView, self).get_context_data(**kwargs)
+
+        context['vacancies'] = self.object.threshold - self.object.heroes.count()
+        context['site'] = get_current_site(self.request)
+
+        return context

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load core %}
+
+{% block title %}{{ block.super }}: {{ campaign.name }}{% endblock title %}
+
+{% block content %}
+<section id="promote">
+	<div class="heading">
+		<h2>
+			Share the cause<br />
+			Build the campaign.
+		</h2>
+	</div>
+	<div>
+		<p>
+			Promote &ldquo;{{ campaign.name }}&rdquo; to people you know and help
+			reach the goal of <strong>{{ campaign.threshold }}</strong> members.
+		</p>
+	</div>
+	<div class="info">
+		<h3>Here's the link:</h3>
+		<p>
+			<code>
+				http://{{ site.domain }}{% url 'campaign_detail' slug=campaign.slug %}
+			</code>
+		</p>
+		<p>
+			(which goes to the <a href="{% url 'campaign_detail' slug=campaign.slug %}">
+				campaign details</a> page&hellip;)
+		</p>
+	</div>
+</section>
+{% endblock content %}

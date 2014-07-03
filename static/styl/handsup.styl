@@ -66,7 +66,6 @@ h3
 	font-size: ($large)em
 	line-height: ($row_ratio / $large)
 	margin: unit($row_ratio / $larger, 'em') 0
-	text-transform: lowercase
 
 p, li
 	font-size: ($regular)px
@@ -115,6 +114,10 @@ note() {
 	}
 	&.info {
 		transform: none
+	}
+	&.heading {
+		padding: 0
+		margin-top: unit($row_ratio / $larger * 3, 'em')
 	}
 	&.error,
 	&.important {
@@ -316,6 +319,35 @@ section#details {
 	}
 }
 
+#skills {
+	note()
+	width: 80% 
+	ul {
+		list-style-type: none;
+
+		li {
+			display: inline-block;
+			width: auto;
+			line-height: unit($row_ratio * $regular * 2, 'px')
+			margin: unit($row_ratio * $regular, 'px')
+			&:nth-child(n) {
+				color: $green-0
+			}
+			&:nth-child(2n) {
+				color: $red-0
+			}
+			&:nth-child(3n) {
+				color: $yellow-0
+			}
+		}
+	}
+	h2 {
+		margin: 0
+		width: 100%
+		text-align: left;
+	}
+}
+
 section#heroes {
 	column(6)
 
@@ -346,39 +378,49 @@ section#heroes {
 	h2 {
 		text-align: center;
 		clear: both;
+		margin-bottom: unit($row_ratio / $larger * 3, 'em')
 		span {
 			font-size: unit($larger, 'em')
 			vertical-align: baseline;
 			text-decoration: underline;
 		}
 	}
-}
 
-#skills {
-	note()
-	width: 80% 
-	ul {
-		list-style-type: none;
-
-		li {
-			display: inline-block;
-			width: auto;
-			line-height: unit($row_ratio * $regular * 2, 'px')
-			margin: unit($row_ratio * $regular, 'px')
-			&:nth-child(n) {
-				color: $green-0
-			}
-			&:nth-child(2n) {
-				color: $red-0
-			}
-			&:nth-child(3n) {
-				color: $yellow-0
-			}
+	> div {
+		note()
+		width: 80%;
+		a.button {
+			background-color: $green-0
+			border-color: $green-1
+			color: white
 		}
 	}
-	h2 {
-		margin: 0
-		width: 100%
-		text-align: left;
+}
+
+// PROMOTE CAMPAIGN PAGE
+
+section#promote {
+	column(6)
+	offset(3)
+	overflow: visible
+	> div {
+		note()
+		width: 80%
+		&.info {
+			padding: 0
+			width: 140%
+			margin-left: -20%;
+			h3 {
+				font-family: 'Patrick Hand', cursive
+				width: 100%
+				text-align: left;
+				text-indent: 2em
+				margin: unit($row_ratio / $large, 'em') 0 0 0
+			}
+			code {
+				font-size: unit($large, 'em')
+				font-family: 'Consolas'
+			}
+		}
 	}
 }
