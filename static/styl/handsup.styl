@@ -25,14 +25,15 @@ $yellow-0 = #EDD62B
 // SIZES
 
 // px
-$regular = 16
-$row_height = 20
+$regular = 18
+$row_height = 22
 
 // ratios
-$x-large = 3.75
-$larger = 1.95
-$large = 1.15
-$small = 0.75
+$xx-large = 50 / $regular
+$x-large = 42 / $regular
+$larger = 32 / $regular
+$large = 28 / $regular
+$small = 16 / $regular
 
 $row_ratio = ($row_height / $regular)
 
@@ -46,8 +47,15 @@ $row_ratio = ($row_height / $regular)
   src: local('Patrick Hand'), local('PatrickHand-Regular'), url(/static/fnt/PatrickHand-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url(/static/fnt/Incosolata.ttf) format('truetype');
+}
+
 html
-	font-family: 'Lucida Grande', Verdana, Geneva, Arial, sans-serif
+	font-family: 'Patrick Hand', cursive
 	font-size: ($regular)px
 
 h1
@@ -60,7 +68,6 @@ h2
 	font-size: ($larger)em
 	line-height: (2 * $row_ratio / $larger)
 	margin: unit($row_ratio / $larger, 'em') 0
-	font-family: 'Patrick Hand', cursive
 
 h3
 	font-size: ($large)em
@@ -119,6 +126,9 @@ note() {
 	&.r {
 		transform: rotate(2deg)
 	}
+	&.l {
+		transform: rotate(-2deg)
+	}
 	&.info {
 		transform: none
 	}
@@ -166,7 +176,6 @@ form {
 	label {
 		display: table-row
 		font-size: unit($larger, 'em')
-		font-family: 'Patrick Hand', cursive
 		line-height: (2 * $row_ratio / $large)
 		margin: unit($row_ratio / $large, 'em') 0
 	}
@@ -178,6 +187,7 @@ form {
 		font-size: unit($large, 'rem')
 		line-height: (2 * $row_ratio / $large)
 		margin: unit($row_ratio / $large / 2, 'rem') 0
+		font-family: 'Patrick Hand', cursive
 	}
 	.extra {
 		text-align: right
@@ -199,6 +209,7 @@ form {
 
 button, .button {
 	button()
+	font-family: 'Patrick Hand', cursive
 }
 
 input[type=checkbox] {
@@ -438,7 +449,6 @@ section#promote {
 			width: 140%
 			margin-left: -20%;
 			h3 {
-				font-family: 'Patrick Hand', cursive
 				width: 100%
 				text-align: left;
 				text-indent: 2em

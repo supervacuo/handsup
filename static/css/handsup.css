@@ -107,32 +107,37 @@ a img {
   font-weight: 400;
   src: local('Patrick Hand'), local('PatrickHand-Regular'), url("/static/fnt/PatrickHand-Regular.ttf") format('truetype');
 }
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url("/static/fnt/Incosolata.ttf") format('truetype');
+}
 html {
-  font-family: 'Lucida Grande', Verdana, Geneva, Arial, sans-serif;
-  font-size: 16px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px;
 }
 h1 {
-  font-size: 3.75em;
-  line-height: 1;
-  margin: 0.333333333333333em 0;
+  font-size: 2.333333333333333em;
+  line-height: 1.571428571428571;
+  margin: 0.523809523809524em 0;
   text-transform: uppercase;
 }
 h2 {
-  font-size: 1.95em;
-  line-height: 1.282051282051282;
-  margin: 0.641025641025641em 0;
-  font-family: 'Patrick Hand', cursive;
+  font-size: 1.777777777777778em;
+  line-height: 1.375;
+  margin: 0.6875em 0;
 }
 h3 {
-  font-size: 1.15em;
-  line-height: 1.086956521739131;
-  margin: 0.641025641025641em 0;
+  font-size: 1.555555555555556em;
+  line-height: 0.785714285714285;
+  margin: 0.6875em 0;
 }
 p,
 li {
-  font-size: 16px;
-  line-height: 1.25;
-  margin: 1.25em 0;
+  font-size: 18px;
+  line-height: 1.222222222222222;
+  margin: 1.222222222222222em 0;
 }
 a {
   text-decoration: none;
@@ -162,8 +167,8 @@ form > div {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
 }
 form > div:nth-child(odd) {
   transform: rotate(2deg);
@@ -175,12 +180,15 @@ form > div:nth-child(even) {
 form > div.r {
   transform: rotate(2deg);
 }
+form > div.l {
+  transform: rotate(-2deg);
+}
 form > div.info {
   transform: none;
 }
 form > div.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 form > div.error,
 form > div.important {
@@ -208,10 +216,9 @@ form p {
 }
 form label {
   display: table-row;
-  font-size: 1.95em;
-  font-family: 'Patrick Hand', cursive;
-  line-height: 2.173913043478261;
-  margin: 1.086956521739131em 0;
+  font-size: 1.777777777777778em;
+  line-height: 1.571428571428571;
+  margin: 0.785714285714285em 0;
 }
 form input,
 form textarea {
@@ -219,18 +226,19 @@ form textarea {
   width: 90%;
   border-width: 0;
   border-bottom: 2px dotted #000;
-  font-size: 1.15rem;
-  line-height: 2.173913043478261;
-  margin: 0.543478260869566rem 0;
+  font-size: 1.555555555555556rem;
+  line-height: 1.571428571428571;
+  margin: 0.392857142857143rem 0;
+  font-family: 'Patrick Hand', cursive;
 }
 form .extra {
   text-align: right;
 }
 form .extra input,
 form .extra textarea {
-  font-size: 0.75rem;
-  line-height: 1.666666666666667;
-  margin: 0.833333333333333rem 0;
+  font-size: 0.888888888888889rem;
+  line-height: 1.375;
+  margin: 0.6875rem 0;
   border-bottom: 2px dotted #666;
   width: 60%;
   color: #666;
@@ -247,8 +255,9 @@ button,
   color: #fff;
   font-weight: bold;
   padding: 0.15em;
-  font-size: 1.95rem;
+  font-size: 1.777777777777778rem;
   vertical-align: middle;
+  font-family: 'Patrick Hand', cursive;
 }
 button:visited,
 .button:visited {
@@ -272,7 +281,7 @@ input[type=checkbox] + label {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin: 0.543478260869566em 0;
+  margin: 0.392857142857143em 0;
   transition: background-position 0.2s ease;
 }
 input[type=checkbox]:checked + label {
@@ -284,7 +293,7 @@ body {
 }
 #container {
   width: 1020px;
-  margin: 6.25em auto 0 auto;
+  margin: 6.111111111111111em auto 0 auto;
 }
 #page_header h1 {
   text-indent: -50000px;
@@ -297,19 +306,19 @@ body {
   text-align: center;
   background: #000;
   color: #fff;
-  font-size: 3.75em;
-  line-height: 1.666666666666665;
+  font-size: 2.333333333333333em;
+  line-height: 2.61904761904762;
 }
 .messages {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
   width: 60%;
   padding: 0;
   background-color: #edd62b;
-  margin-bottom: 1.25em;
+  margin-bottom: 1.222222222222222em;
 }
 .messages:nth-child(odd) {
   transform: rotate(2deg);
@@ -321,12 +330,15 @@ body {
 .messages.r {
   transform: rotate(2deg);
 }
+.messages.l {
+  transform: rotate(-2deg);
+}
 .messages.info {
   transform: none;
 }
 .messages.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 .messages.error,
 .messages.important {
@@ -349,7 +361,7 @@ body {
 #page_footer ul li {
   display: inline-block;
   margin: 0 1em;
-  line-height: 2.5em;
+  line-height: 2.444444444444444em;
 }
 #page_footer ul li a {
   color: #222;
@@ -362,7 +374,7 @@ body {
 }
 #cause_community span {
   background-color: rgba(128,128,128,0.5);
-  font-size: 3.75rem;
+  font-size: 2.333333333333333rem;
   color: #fff;
   position: absolute;
   bottom: 1.5em;
@@ -380,7 +392,7 @@ body {
   color: #fff;
   font-weight: bold;
   padding: 0.15em;
-  font-size: 1.95rem;
+  font-size: 1.777777777777778rem;
   vertical-align: middle;
 }
 #cause_community span .btn:visited {
@@ -401,8 +413,8 @@ section#details div {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
 }
 section#details div:nth-child(odd) {
   transform: rotate(2deg);
@@ -414,12 +426,15 @@ section#details div:nth-child(even) {
 section#details div.r {
   transform: rotate(2deg);
 }
+section#details div.l {
+  transform: rotate(-2deg);
+}
 section#details div.info {
   transform: none;
 }
 section#details div.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 section#details div.error,
 section#details div.important {
@@ -431,8 +446,8 @@ section#details div.important {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
   width: 80%;
 }
 #skills:nth-child(odd) {
@@ -445,12 +460,15 @@ section#details div.important {
 #skills.r {
   transform: rotate(2deg);
 }
+#skills.l {
+  transform: rotate(-2deg);
+}
 #skills.info {
   transform: none;
 }
 #skills.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 #skills.error,
 #skills.important {
@@ -464,8 +482,8 @@ section#details div.important {
 #skills ul li {
   display: inline-block;
   width: auto;
-  line-height: 40px;
-  margin: 20px;
+  line-height: 43.99999999999999px;
+  margin: 21.999999999999996px;
 }
 #skills ul li:nth-child(3n) {
   color: #2f7c0b;
@@ -478,7 +496,7 @@ section#details div.important {
 }
 #skills ul li.none {
   color: #000;
-  line-height: 1.25;
+  line-height: 1.222222222222222;
   text-align: left;
   margin-left: 0;
   margin-right: 0;
@@ -535,10 +553,10 @@ section#heroes li:nth-child(3n) {
 section#heroes h2 {
   text-align: center;
   clear: both;
-  margin-bottom: 1.923076923076923em;
+  margin-bottom: 2.0625em;
 }
 section#heroes h2 span {
-  font-size: 1.95em;
+  font-size: 1.777777777777778em;
   vertical-align: baseline;
   text-decoration: underline;
 }
@@ -546,8 +564,8 @@ section#heroes > div {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
   width: 80%;
 }
 section#heroes > div:nth-child(odd) {
@@ -560,12 +578,15 @@ section#heroes > div:nth-child(even) {
 section#heroes > div.r {
   transform: rotate(2deg);
 }
+section#heroes > div.l {
+  transform: rotate(-2deg);
+}
 section#heroes > div.info {
   transform: none;
 }
 section#heroes > div.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 section#heroes > div.error,
 section#heroes > div.important {
@@ -593,8 +614,8 @@ section#promote > div {
   border: 1px solid #000;
   text-align: center;
   transform-origin: left center;
-  padding: 1.923076923076923em;
-  margin: 3.846153846153846em auto;
+  padding: 2.0625em;
+  margin: 4.125em auto;
   width: 80%;
 }
 section#promote > div:nth-child(odd) {
@@ -607,12 +628,15 @@ section#promote > div:nth-child(even) {
 section#promote > div.r {
   transform: rotate(2deg);
 }
+section#promote > div.l {
+  transform: rotate(-2deg);
+}
 section#promote > div.info {
   transform: none;
 }
 section#promote > div.heading {
   padding: 0;
-  margin-top: 1.923076923076923em;
+  margin-top: 2.0625em;
 }
 section#promote > div.error,
 section#promote > div.important {
@@ -626,13 +650,12 @@ section#promote > div.info {
   margin-left: -20%;
 }
 section#promote > div.info h3 {
-  font-family: 'Patrick Hand', cursive;
   width: 100%;
   text-align: left;
   text-indent: 2em;
-  margin: 1.086956521739131em 0 0 0;
+  margin: 0.785714285714285em 0 0 0;
 }
 section#promote > div.info code {
-  font-size: 1.15em;
+  font-size: 1.555555555555556em;
   font-family: 'Consolas';
 }
