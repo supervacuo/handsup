@@ -1,10 +1,22 @@
 # vim: ts=4 sw=4 et fdm=indent
-from django import forms
+import floppyforms.__future__ as forms
 
 from .models import Hero, Campaign, CampaignHero
 
 
-class CampaignForm(forms.ModelForm):
+class PlaceholderMixin(object):
+    def __init__(self, *args, **kwargs):
+        super(PlaceholderMixin, self).__init__(*args, **kwargs)
+        for key, field in self.fields.items():
+            if isinstance(field.widget, forms.TextInput) or \
+                isinstance(field.widget, forms.Textarea) or \
+                isinstance(field.widget, forms.DateInput) or \
+                isinstance(field.widget, forms.DateTimeInput) or \
+                isinstance(field.widget, forms.TimeInput):
+                field.widget.attrs.update({'placeholder': field.help_text})
+                field.help_text = ''
+
+class CampaignForm(PlaceholderMixin, forms.ModelForm):
     class Meta:
         model = Campaign
         fields = ('name', 'slug', 'description', 'location_address', 'threshold')

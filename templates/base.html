@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -20,23 +19,31 @@
     <![endif]-->
 
     <link href="{% static 'css/handsup.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ion.rangeSlider.skinFlat.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ion.rangeSlider.css' %}" rel="stylesheet">
 
     {% block extra_css %}{% endblock extra_css %}
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'js/ion.rangeSlider.min.js' %}"></script>
 
     {% block extra_js %}{% endblock extra_js %}
   </head>
 
   <body>
 
-    <div class="container">
+    <div id="container">
 
-      <h1>{% block page_title %}{% endblock page_title %}</h1>
+      <header id="page_header">
+        <h1>
+          Hands Up!
+        </h1>
+        <h2>
+          {% block page_title %}{% endblock page_title %}
+        </h2>
+      </header>
 
       <ul class="messages">
           {% for message in messages %}
@@ -52,26 +59,16 @@
 
     </div> <!-- /container -->
 
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url "home" %}">handsup</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#legal">Legal</a></li>
-          <li><a href="#safer_spaces">Safer Spaces</a></li>
-          {% if request.user.is_authenticated %}
-          <li><a href="{% url "user_logout" %}">Logout</a></li>
-          {% endif  %}
-        </ul>
-      </div>
-    </div>
-
+    <footer id="page_footer">
+      <ul class="nav">
+        <li><a class="navbar-brand" href="{% url "home" %}">Hands Up!</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#legal">Legal</a></li>
+        <li><a href="#safer_spaces">Safer Spaces</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url "user_logout" %}">Logout</a></li>
+        {% endif  %}
+      </ul>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "name": "semantic-grid-srfrnk",
+  "homepage": "https://github.com/srfrnk/semantic.gs",
+  "_release": "22e0e7998b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "22e0e7998ba936a36d671f694c03d4b08dbe1300"
+  },
+  "_source": "git://github.com/srfrnk/semantic.gs.git",
+  "_target": "*",
+  "_originalSource": "semantic-grid-srfrnk",
+  "_direct": true
+}

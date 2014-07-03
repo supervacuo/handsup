@@ -1,27 +1,20 @@
-{% extends "base.html" %}
-{% load bootstrap3 %}
+{% extends "base.html" %}{% load floppyforms %}
 
 {% block title %}{{ block.super }}: join {{ campaign.name }}{% endblock title %}
 
-{% block page_title %}Join "{{ campaign.name }}"{% endblock page_title %}
-
 {% block content %}
-<p>
-	This service is all about getting people to meet in real life!
-</p>
-<p>
-	This campaign has been started by people in 
-	<strong>{{ campaign.location_address }}</strong> &ndash; if you might have trouble
-	making it to a meeting there, why not <a href="{% url "campaign_add" %}"
-	>start your own campaign</a> for your local area?
-</p>
 <form action="." method="POST">
 	{% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-			<button type="submit" class="btn btn-primary">
-					{% bootstrap_icon "star" %} Go!
-			</button>
-	{% endbuttons %}
+	<p>
+		This service is all about getting people to meet in real life!
+	</p>
+	<p>
+		This campaign has been started by people in 
+		<strong>{{ campaign.location_address }}</strong> &ndash; if you might have trouble
+		making it to a meeting there, why not <a href="{% url "campaign_add" %}"
+		>start your own campaign</a> for your local area?
+	</p>
+	{% form form using "floppyforms/layouts/p.html" %}
+	<button type="submit">Join!</button>
 </form>
 {% endblock content %}

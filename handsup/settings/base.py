@@ -102,6 +102,14 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'static'))
+
+BOWER_INSTALLED_APPS = (
+    'semantic-grid-srfrnk',
+    'nib',
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -195,7 +203,8 @@ DJANGO_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'core',
-    'bootstrap3',
+    'djangobower',
+    'floppyforms'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

@@ -1,7 +1,6 @@
-{% extends "base.html" %}
-{% load bootstrap3 %}
+{% extends "base.html" %}{% load floppyforms %}
 
-{% block page_title %}Add campaign{% endblock page_title %}
+{% block page_title %}{% endblock page_title %}
 
 {% block extra_js %}
 	<script src="{{ STATIC_URL }}js/jquery.slugify.js"></script>
@@ -9,6 +8,14 @@
 		{# FIXME move to "form.js" or a generic form template #}
 		$(document).ready(function() {
 				createSlugs();
+
+				$("#id_threshold").ionRangeSlider({
+					min: 4,
+					max: 20,
+					onChange: function(obj) {
+						$("#val_threshold").text(obj.fromNumber);
+					}
+				});
 		});
 	</script>
 {% endblock extra_js %}
@@ -16,11 +23,34 @@
 {% block content %}
 <form action="." method="POST">
 	{% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-			<button type="submit" class="btn btn-primary">
-					{% bootstrap_icon "star" %} Go!
+	{% form form using %}
+	{% formrow form.name with extra=form.slug %}
+	{% formrow form.location_address %}
+	<div>
+		<p>
+			{% with field=form.threshold %}
+			{% if field|id %}<label for="{{ field|id }}">{% endif %}{{ field.label }}{% if field.label|last not in ".:!?" %}:{% endif %}{% if field|id %}</label>{% endif %}
+			{% formfield field %}
+			{% endwith %}
+		</p>
+		<p>
+			If <span id="val_threshold">8</span> people join my cause, I pledge to:
+		</p>
+		<ul class="info">
+			<li>Meet</li>
+			<li>Discuss</li>
+			<li>Plan</li>
+			<li>Take action!</li>
+		</ul>
+	</div>
+	{% formrow form.description %}
+	{% endform %}
+	<div>
+		<p>
+			<button type="submit">
+				Pledge it
 			</button>
-	{% endbuttons %}
+		</p>
+	</div>
 </form>
 {% endblock content %}

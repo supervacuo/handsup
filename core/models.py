@@ -30,7 +30,7 @@ class Hero(AbstractBaseUser):
     )
     username = models.CharField(
         max_length=MAX_CHARFIELD_LENGTH,
-        unique=True
+        unique=True,
     )
 
     photo = models.ImageField(upload_to='users', null=True, blank=True,
@@ -55,7 +55,7 @@ class Hero(AbstractBaseUser):
         return self.username
 
     def get_absolute_url(self):
-        return reverse("hero_detail", kwargs={"username": self.username})
+        return reverse("hero_detail", kwargs={"pk": self.pk})
 
 
 class DefaultDecimalField(models.DecimalField):
@@ -70,7 +70,7 @@ class CampaignHero(models.Model):
     hero = models.ForeignKey(Hero, related_name="hero_campaigns")
 
     public = models.BooleanField(
-        verbose_name=u"Show your username and profile picture on this campaign's page?",
+        help_text=u"Show your username and profile picture on this campaign's page?",
         default=True
     )
     date_created = models.DateTimeField(default=datetime.now, editable=False)
@@ -83,15 +83,29 @@ class CampaignHero(models.Model):
 
 
 class Campaign(models.Model):
-    name = models.CharField(max_length=MAX_CHARFIELD_LENGTH)
-    description = models.CharField(max_length=MAX_CHARFIELD_LENGTH)
+    name = models.CharField(
+        max_length=MAX_CHARFIELD_LENGTH, verbose_name="what's your cause?",
+        help_text="e.g. Salford anti-smog"
+    )
+    description = models.CharField(
+        max_length=MAX_CHARFIELD_LENGTH,
+        verbose_name="what's your motivation?",
+        help_text="e.g. 1 in 20 deaths due to air pollution"
+    )
 
-    slug = models.SlugField(max_length=MAX_CHARFIELD_LENGTH, unique=True, 
-                            verbose_name='slug')
+    slug = models.SlugField(
+        max_length=MAX_CHARFIELD_LENGTH, unique=True, verbose_name='slug',
+        help_text="salford-anti-smog")
 
-    location_address = models.CharField(max_length=MAX_CHARFIELD_LENGTH)
+    location_address = models.CharField(
+        max_length=MAX_CHARFIELD_LENGTH, verbose_name="city, town, area?",
+        help_text="e.g. Salford / Manchester / M19"
+    )
 
-    threshold = models.IntegerField(default=8)
+    threshold = models.IntegerField(
+        default=8,
+        verbose_name="Pledge-o-meter"
+    )
     
     date_created = models.DateTimeField(default=datetime.now, editable=False)
 

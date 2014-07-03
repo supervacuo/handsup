@@ -1,19 +1,14 @@
-{% extends "base.html" %}
+{% extends "base.html" %}{% load static %}
 
 {% block title %}{{ block.super }}: home{% endblock title %}
 
-{% block page_title %}Hands Up! <small>Subtitle</small>{% endblock page_title %}
-
 {% block content %}
-<p class="lead">
-	A short sentence explaining the service
+<div id="cause_community">
+	<span>
+		What's your cause?<br />
+		Find your community&hellip;<br />
+		<a class="btn" href="{% url "campaign_add" %}">Get started!</a>
+	</span>
+</div>
 </p>
-<p>
-	<a class="btn btn-primary btn-lg" href="{% url "campaign_add" %}">Add campaign</a>
-</p>
-<blockquote>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Integer posuere erat a ante.</p>
-	  <footer>Someone famous, <cite title="Source Title">Campaign Name</cite></footer>
-</blockquote>
 {% endblock content %}

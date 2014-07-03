@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^campaign/(?P<slug>[-_\w]+)/own/$', CampaignOwnView.as_view(), name='campaign_own'),
     url(r'^campaign/(?P<slug>[-_\w]+)/$', CampaignDetailView.as_view(), name='campaign_detail'),
 
-    url(r'^user/(?P<username>[-_\w]+)/$', HeroDetailView.as_view(), name='hero_detail'),
+    url(r'^user/(?P<pk>\d+)/$', HeroDetailView.as_view(), name='hero_detail'),
     url(r'^register/', HeroRegisterView.as_view(), name='user_register'),
     url(r'^login/', 'django.contrib.auth.views.login', name='user_login'),
     url(r'^logout/', 'django.contrib.auth.views.logout', {

@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-{% load bootstrap3 %}
+{% extends "base.html" %}{% load floppyforms %}
 
 {% block content %}
 
@@ -8,15 +7,18 @@
 {% endif %}
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-{% csrf_token %}
-	{% bootstrap_form form %}
-  <input type="hidden" name="next" value="{{ next }}" />
-	{% buttons %}
-			<button type="submit" class="btn btn-primary">
-					{% bootstrap_icon "star" %} Go!
-			</button>
-      <a class="btn btn-info" href="{% url "user_register" %}?next={{ next }}">Register</a>
-	{% endbuttons %}
+  {% csrf_token %}
+  <div>
+    No account yet? 
+    <a class="button" href="{% url "user_register" %}?next={{ next }}">Register</a>
+  </div>
+  {% form form using "floppyforms/layouts/p.html" %}
+  <div>
+    <input type="hidden" name="next" value="{{ next }}" />
+    <button type="submit" class="btn btn-primary">
+       Login!
+    </button>
+  </div>
 </form>
 
 {% endblock %}
